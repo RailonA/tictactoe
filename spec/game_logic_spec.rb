@@ -3,6 +3,7 @@ require './lib/board_info.rb'
 require './lib/player_info.rb'
 require './lib/game_logic.rb'
 
+
 # Test Cases
 test_player = PlayerInfo.new
 test_board = BoardInfo.new
@@ -35,15 +36,20 @@ describe TicTacToe do
         end
    
 
-        describe '#board_input' do
-            it 'checks if board had been built' do 
-            expect(test_board ).to eql()
-              tictactoe.switch_player
-              expect().to eql()
-              tictactoe.switch_player
-              expect().to eql()
-            end
-     end
+        describe '#board_update' do
 
+
+  test_board
+
+  describe '#board_initialize' do
+    this_test_board = BoardInfo.new
+    it 'checks that every number is in place' do
+      this_test_board.memory.each_with_index.map { |item, index| expect(item).to eql(index + 1) }
+      this_test_board.player_board.map { |item| expect(item).to eql(' ') }
+    end
+  end
+end
+
+end
 end
 

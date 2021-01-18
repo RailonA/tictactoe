@@ -1,5 +1,6 @@
 class TicTacToe
   attr_accessor :board, :player
+  attr_reader :current_player
 
   def initialize(my_board = nil, my_player = nil)
     self.board = my_board
@@ -8,7 +9,7 @@ class TicTacToe
 
   def board_memory
     board.memory
-  end
+  endboard_reset
 
   def player_board
     board.player_board
@@ -58,4 +59,5 @@ class TicTacToe
   def win_check
     return true if win_row || win_col || win_diag
   end
+end
 end
