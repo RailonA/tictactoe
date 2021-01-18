@@ -7,11 +7,6 @@ class TicTacToe
     self.player = my_player
   end
 
-  def board_memory
-    board.memory
-    endboard_reset
-  end
-
   def player_board
     board.player_board
   end
@@ -37,6 +32,12 @@ class TicTacToe
     board.player_board[@location.to_i - 1] = @current_player[:symbol]
   end
 
+  def win_check
+    return true if win_row || win_col || win_diag
+  end
+
+  private
+
   def win_row
     return true if
       [board.player_board[0], board.player_board[1], board.player_board[2]].uniq.join == @current_player[:symbol] ||
@@ -55,9 +56,5 @@ class TicTacToe
     return true if
       [board.player_board[0], board.player_board[4], board.player_board[8]].uniq.join == @current_player[:symbol] ||
       [board.player_board[6], board.player_board[4], board.player_board[2]].uniq.join == @current_player[:symbol]
-  end
-
-  def win_check
-    return true if win_row || win_col || win_diag
   end
 end

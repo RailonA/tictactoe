@@ -12,9 +12,6 @@ describe TicTacToe do
       expect(test_player).to eql(tictactoe.player)
       expect(test_board).to eql(tictactoe.board)
     end
-    it 'Check for valid creation cases' do
-      expect(test_player.player[0][:name]).to eql('')
-    end
   end
 
   describe '#switch_player' do
