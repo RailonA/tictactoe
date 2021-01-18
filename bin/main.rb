@@ -121,3 +121,4 @@ game.game_round
 while game.restart_game == true do game.game_round end
 
 # rubocop:enable, Style/GuardClause, Metrics/AbcSize
+# end
