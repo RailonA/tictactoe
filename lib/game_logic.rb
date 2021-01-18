@@ -9,7 +9,8 @@ class TicTacToe
 
   def board_memory
     board.memory
-  endboard_reset
+    endboard_reset
+  end
 
   def player_board
     board.player_board
@@ -59,5 +60,4 @@ class TicTacToe
   def win_check
     return true if win_row || win_col || win_diag
   end
-end
 end
