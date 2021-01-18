@@ -23,6 +23,36 @@ describe TicTacToe do
       expect(tictactoe.current_player).to eql(tictactoe.player.player.last)
     end
   end
+
+  describe '#win_check' do
+    win_combos = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
+
+    it 'checks for every winning combination' do
+      win_combos.map do |combo|
+        p tictactoe.current_player.to_s + ', ' + combo.to_s
+
+        test_board.board_reset
+        test_board.player_board[combo[0]] = tictactoe.current_player[:symbol]
+        test_board.player_board[combo[1]] = tictactoe.current_player[:symbol]
+        test_board.player_board[combo[2]] = tictactoe.current_player[:symbol]
+
+        expect(tictactoe.win_check).to eql(true)
+      end
+
+      tictactoe.switch_player
+
+      win_combos.map do |combo|
+        p tictactoe.current_player.to_s + ', ' + combo.to_s
+
+        test_board.board_reset
+        test_board.player_board[combo[0]] = tictactoe.current_player[:symbol]
+        test_board.player_board[combo[1]] = tictactoe.current_player[:symbol]
+        test_board.player_board[combo[2]] = tictactoe.current_player[:symbol]
+
+        expect(tictactoe.win_check).to eql(true)
+      end
+    end
+  end
 end
 
 describe BoardInfo do

@@ -34,6 +34,8 @@ class TicTacToe
 
   def win_check
     return true if win_row || win_col || win_diag
+
+    false
   end
 
   private
