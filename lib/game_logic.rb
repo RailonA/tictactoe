@@ -1,5 +1,5 @@
 class TicTacToe
-  attr_accessor :board, :player
+  attr_accessor :board, :player, :error_input
   attr_reader :current_player
 
   def initialize(my_board = nil, my_player = nil)

@@ -22,6 +22,11 @@ describe TicTacToe do
       tictactoe.switch_player
       expect(tictactoe.current_player).to eql(tictactoe.player.player.last)
     end
+
+    it 'returns nil if error input' do
+      tictactoe.error_input = true
+      expect(tictactoe.switch_player).to eql(nil)
+    end
   end
 
   describe '#win_check' do
@@ -29,8 +34,6 @@ describe TicTacToe do
 
     it 'checks for every winning combination' do
       win_combos.map do |combo|
-        p tictactoe.current_player.to_s + ', ' + combo.to_s
-
         test_board.board_reset
         test_board.player_board[combo[0]] = tictactoe.current_player[:symbol]
         test_board.player_board[combo[1]] = tictactoe.current_player[:symbol]
@@ -42,8 +45,6 @@ describe TicTacToe do
       tictactoe.switch_player
 
       win_combos.map do |combo|
-        p tictactoe.current_player.to_s + ', ' + combo.to_s
-
         test_board.board_reset
         test_board.player_board[combo[0]] = tictactoe.current_player[:symbol]
         test_board.player_board[combo[1]] = tictactoe.current_player[:symbol]
