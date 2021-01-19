@@ -93,7 +93,8 @@ def tic_tac_toe
     end
     display_board
     switch_player
-  enddescribe
+    enddescribe
+  end
 end
 
 def restart_game
@@ -107,7 +108,6 @@ def restart_game
     false
 
   end
-  # add condition for error input
 end
 
 def game_round
@@ -121,4 +121,3 @@ game.game_round
 while game.restart_game == true do game.game_round end
 
 # rubocop:enable, Style/GuardClause, Metrics/AbcSize
-# HELLO WORLD!!!
