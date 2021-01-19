@@ -135,6 +135,10 @@ describe BoardInfo do
       test_board.memory.each_with_index.map { |item, index| expect(item).to eql(index + 1) }
       test_board.player_board.map { |item| expect(item).to eql(' ') }
     end
+    it 'checks that there are no strange elements' do
+      test_board.memory.map { |item| expect(item).not_to eql(' ') }
+      test_board.player_board.each_with_index.map { |item, index| expect(item).not_to eql(index + 1)) }
+    end
   end
 
   describe '#board_reset' do
