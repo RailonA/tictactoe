@@ -93,7 +93,7 @@ def tic_tac_toe
     end
     display_board
     switch_player
-  end
+  enddescribe
 end
 
 def restart_game
