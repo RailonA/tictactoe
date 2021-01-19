@@ -12,7 +12,7 @@ describe TicTacToe do
       expect(test_player).to eql(tictactoe.player)
       expect(test_board).to eql(tictactoe.board)
     end
-    it "Check for player_info for invalid symbol" do
+    it 'Check for player_info for invalid symbol' do
       expect(test_player.player[0][:symbol]).not_to eql(test_player.player[1][:symbol])
     end
   end
@@ -25,8 +25,8 @@ describe TicTacToe do
       tictactoe.switch_player
       expect(tictactoe.current_player).to eql(tictactoe.player.player.last)
     end
-          
-    it " Check for repeating turnes, or nill" do
+
+    it ' Check for repeating turnes, or nill' do
       tictactoe.switch_player
       expect(tictactoe.current_player).not_to eql(nil)
       expect(tictactoe.current_player).not_to eql(tictactoe.player.player.last)
@@ -35,17 +35,16 @@ describe TicTacToe do
     end
 
     it 'returns nil if error input' do
-     tictactoe.error_input = true
-     tictactoe.switch_player 
-     expect(tictactoe.current_player).to eql(nil)
-    end  
+      tictactoe.error_input = true
+      tictactoe.switch_player
+      expect(tictactoe.current_player).to eql(nil)
+    end
     it 'Checking if switch_player switches player if there is an error' do
       tictactoe.error_input = true
       tictactoe.current_player = tictactoe.player.player[0]
-      tictactoe.switch_player 
+      tictactoe.switch_player
       expect(tictactoe.current_player).not_to eql(tictactoe.player.player[1])
-     end
-
+    end
   end
 
   describe '#board_update' do
@@ -82,9 +81,6 @@ describe TicTacToe do
       tictactoe.board_update
       expect(test_board.memory[tictactoe.location - 1]).not_to eql(' ')
     end
- 
-
-
   end
 
   describe '#win_check' do
@@ -113,6 +109,19 @@ describe TicTacToe do
         expect(tictactoe.win_check).to eql(true)
       end
     end
+
+
+    it ' Check if mix symbols win' do
+     tictactoe.current_player =  tictactoe.player.player[0]
+      win_combos.map do |combo|
+      test_board.board_reset
+      test_board.player_board[combo[0]] = "X"
+      test_board.player_board[combo[1]] = "O"
+      test_board.player_board[combo[2]] = "X"
+      expect(tictactoe.win_check).not_to eql(true)
+    end
+  end
+    
   end
 end
 
