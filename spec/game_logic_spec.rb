@@ -3,9 +3,9 @@ require './lib/player_info.rb'
 require './lib/game_logic.rb'
 
 describe TicTacToe do
-  test_player = PlayerInfo.new
-  test_board = BoardInfo.new
-  tictactoe = TicTacToe.new(test_board, test_player)
+  let(:test_player) { PlayerInfo.new }
+  let(:test_board) { BoardInfo.new }
+  let(:tictactoe) { TicTacToe.new(test_board, test_player) }
 
   describe '#initialize' do
     it 'Check for valid creation cases' do
@@ -29,10 +29,24 @@ describe TicTacToe do
     end
   end
 
+  describe '#board_update' do
+    # it 'checks for updated board' do
+    #   1..9.map do |input|
+        
+    #   end
+    # end
+    it 'returns nil if error input' do
+      tictactoe.error_input = true
+      expect(tictactoe.board_update).to eql(nil)
+    end
+  end
+
   describe '#win_check' do
-    win_combos = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
+    let(:win_combos) { [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]] }
 
     it 'checks for every winning combination' do
+      tictactoe.switch_player
+
       win_combos.map do |combo|
         test_board.board_reset
         test_board.player_board[combo[0]] = tictactoe.current_player[:symbol]
@@ -58,10 +72,10 @@ end
 
 describe BoardInfo do
   describe '#board_initialize' do
-    this_test_board = BoardInfo.new
+    let(:test_board) { BoardInfo.new }
     it 'checks that every number is in place' do
-      this_test_board.memory.each_with_index.map { |item, index| expect(item).to eql(index + 1) }
-      this_test_board.player_board.map { |item| expect(item).to eql(' ') }
+      test_board.memory.each_with_index.map { |item, index| expect(item).to eql(index + 1) }
+      test_board.player_board.map { |item| expect(item).to eql(' ') }
     end
   end
 end
