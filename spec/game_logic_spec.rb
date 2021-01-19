@@ -1,6 +1,6 @@
-require './lib/board_info.rb'
-require './lib/player_info.rb'
-require './lib/game_logic.rb'
+require './lib/board_info'
+require './lib/player_info'
+require './lib/game_logic'
 
 describe TicTacToe do
   let(:test_player) { PlayerInfo.new }
@@ -30,11 +30,18 @@ describe TicTacToe do
   end
 
   describe '#board_update' do
-    # it 'checks for updated board' do
-    #   1..9.map do |input|
-        
-    #   end
-    # end
+    it 'checks for updated board' do
+      tictactoe.location = 2
+      tictactoe.current_player = test_player.player[0]
+      tictactoe.board_update
+      expect(test_board.memory[tictactoe.location - 1]).to eql(' ')
+    end
+  it  'checks for updated player board' do
+     tictactoe.location = 2
+     tictactoe.current_player = test_player.player[0]
+     tictactoe.board_update
+     expect(test_board.player_board[tictactoe.location - 1]).to eql(tictactoe.current_player[:symbol])
+  end
     it 'returns nil if error input' do
       tictactoe.error_input = true
       expect(tictactoe.board_update).to eql(nil)
@@ -68,7 +75,7 @@ describe TicTacToe do
       end
     end
   end
-end
+
 
 describe BoardInfo do
   describe '#board_initialize' do
@@ -78,4 +85,5 @@ describe BoardInfo do
       test_board.player_board.map { |item| expect(item).to eql(' ') }
     end
   end
+end
 end
