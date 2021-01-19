@@ -75,31 +75,42 @@ describe TicTacToe do
       end
     end
   end
+end
 
-  describe BoardInfo do
-    let(:test_player) { PlayerInfo.new }
-    let(:test_board) { BoardInfo.new }
-    let(:tictactoe) { TicTacToe.new(test_board, test_player) }
+describe BoardInfo do
+  let(:test_player) { PlayerInfo.new }
+  let(:test_board) { BoardInfo.new }
+  let(:tictactoe) { TicTacToe.new(test_board, test_player) }
 
-    describe '#board_initialize' do
-      it 'checks that every number is in place' do
-        test_board.memory.each_with_index.map { |item, index| expect(item).to eql(index + 1) }
-        test_board.player_board.map { |item| expect(item).to eql(' ') }
-      end
+  describe '#board_initialize' do
+    it 'checks that every number is in place' do
+      test_board.memory.each_with_index.map { |item, index| expect(item).to eql(index + 1) }
+      test_board.player_board.map { |item| expect(item).to eql(' ') }
     end
+  end
 
-    describe '#board_reset' do
-      let(:input_symbols) { ['X', 'O', ' '] }
-      it 'Check if the board has been reset' do
-        test_board.memory.map! { |_elem| _elem = rand(1..9) }
-        test_board.board_reset
-        test_board.memory.each_with_index.map { |item, index| expect(item).to eql(index + 1) }
-      end
-      it 'Check if player_board has been reset ' do
-        test_board.player_board.map! { |_item| _item = input_symbols[rand(0..2)] }
-        test_board.board_reset
-        test_board.player_board.map { |item| expect(item).to eql(' ') }
-      end
+  describe '#board_reset' do
+    let(:input_symbols) { ['X', 'O', ' '] }
+    it 'Check if the board has been reset' do
+      test_board.memory.map! { |_elem| _elem = rand(1..9) }
+      test_board.board_reset
+      test_board.memory.each_with_index.map { |item, index| expect(item).to eql(index + 1) }
+    end
+    it 'Check if player_board has been reset ' do
+      test_board.player_board.map! { |_item| _item = input_symbols[rand(0..2)] }
+      test_board.board_reset
+      test_board.player_board.map { |item| expect(item).to eql(' ') }
+    end
+  end
+end
+
+describe PlayerInfo do
+  let(:initial_values1) { { name: '', symbol: 'X', score: 0 } }
+  let(:initial_values2) { { name: '', symbol: 'O', score: 0 } }
+  describe '#initialize' do
+    it 'checks that both players have their corresponding parameters' do
+      expect(initial_values1).to eql(PlayerInfo.new.player[0])
+      expect(initial_values2).to eql(PlayerInfo.new.player[1])
     end
   end
 end
