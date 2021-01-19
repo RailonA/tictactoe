@@ -26,7 +26,7 @@ describe TicTacToe do
       expect(tictactoe.current_player).to eql(tictactoe.player.player.last)
     end
 
-    it ' Check for repeating turnes, or nill' do
+    it 'Check for repeating turnes, or nill' do
       tictactoe.switch_player
       expect(tictactoe.current_player).not_to eql(nil)
       expect(tictactoe.current_player).not_to eql(tictactoe.player.player.last)
@@ -34,12 +34,7 @@ describe TicTacToe do
       expect(tictactoe.current_player).not_to eql(tictactoe.player.player.first)
     end
 
-    it 'returns nil if error input' do
-      tictactoe.error_input = true
-      tictactoe.switch_player
-      expect(tictactoe.current_player).to eql(nil)
-    end
-    it 'Checking if switch_player switches player if there is an error' do
+    it 'Does not make any changes if the input is invalid' do
       tictactoe.error_input = true
       tictactoe.current_player = tictactoe.player.player[0]
       tictactoe.switch_player
@@ -74,7 +69,7 @@ describe TicTacToe do
       expect(test_board.player_board[tictactoe.location - 1]).not_to eql(' ')
     end
 
-    it "Testing if board_update doesn't work" do
+    it 'Does not make any changes if the input is invalid' do
       tictactoe.error_input = true
       tictactoe.location = 2
       tictactoe.current_player = test_player.player[0]
@@ -110,7 +105,7 @@ describe TicTacToe do
       end
     end
 
-    it ' Check if mix symbols win' do
+    it 'Does not win if there are mixed symbols' do
       tictactoe.current_player = tictactoe.player.player[0]
       win_combos.map do |combo|
         test_board.board_reset
