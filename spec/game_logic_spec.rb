@@ -25,11 +25,26 @@ describe TicTacToe do
       tictactoe.switch_player
       expect(tictactoe.current_player).to eql(tictactoe.player.player.last)
     end
-  
-    it 'returns nil if error input' do
-      tictactoe.error_input = true
-      expect(tictactoe.switch_player).to eql(nil)
+          
+    it " Check for repeating turnes, or nill" do
+      tictactoe.switch_player
+      expect(tictactoe.current_player).not_to eql(nil)
+      expect(tictactoe.current_player).not_to eql(tictactoe.player.player.last)
+      tictactoe.switch_player
+      expect(tictactoe.current_player).not_to eql(tictactoe.player.player.first)
     end
+
+    it 'returns nil if error input' do
+     tictactoe.error_input = true
+     tictactoe.switch_player 
+     expect(tictactoe.current_player).to eql(nil)
+    end  
+    it 'Checking if switch_player switches player if there is an error' do
+      tictactoe.error_input = true
+      tictactoe.current_player = tictactoe.player.player[0]
+      tictactoe.switch_player 
+      expect(tictactoe.current_player).not_to eql(tictactoe.player.player[1])
+     end
 
   end
 
