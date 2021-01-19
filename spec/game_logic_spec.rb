@@ -36,12 +36,12 @@ describe TicTacToe do
       tictactoe.board_update
       expect(test_board.memory[tictactoe.location - 1]).to eql(' ')
     end
-  it  'checks for updated player board' do
-     tictactoe.location = 2
-     tictactoe.current_player = test_player.player[0]
-     tictactoe.board_update
-     expect(test_board.player_board[tictactoe.location - 1]).to eql(tictactoe.current_player[:symbol])
-  end
+    it 'checks for updated player board' do
+      tictactoe.location = 2
+      tictactoe.current_player = test_player.player[0]
+      tictactoe.board_update
+      expect(test_board.player_board[tictactoe.location - 1]).to eql(tictactoe.current_player[:symbol])
+    end
     it 'returns nil if error input' do
       tictactoe.error_input = true
       expect(tictactoe.board_update).to eql(nil)
@@ -76,36 +76,30 @@ describe TicTacToe do
     end
   end
 
+  describe BoardInfo do
+    let(:test_player) { PlayerInfo.new }
+    let(:test_board) { BoardInfo.new }
+    let(:tictactoe) { TicTacToe.new(test_board, test_player) }
 
+    describe '#board_initialize' do
+      it 'checks that every number is in place' do
+        test_board.memory.each_with_index.map { |item, index| expect(item).to eql(index + 1) }
+        test_board.player_board.map { |item| expect(item).to eql(' ') }
+      end
+    end
 
-
-describe BoardInfo do
-  
-  let(:test_player) { PlayerInfo.new }
-  let(:test_board) { BoardInfo.new }
-  let(:tictactoe) { TicTacToe.new(test_board, test_player) }
-
-  describe '#board_initialize' do
-    it 'checks that every number is in place' do
-      test_board.memory.each_with_index.map { |item, index| expect(item).to eql(index + 1) }
-      test_board.player_board.map { |item| expect(item).to eql(' ') }
+    describe '#board_reset' do
+      let(:input_symbols) { ['X', 'O', ' '] }
+      it 'Check if the board has been reset' do
+        test_board.memory.map! { |_elem| _elem = rand(1..9) }
+        test_board.board_reset
+        test_board.memory.each_with_index.map { |item, index| expect(item).to eql(index + 1) }
+      end
+      it 'Check if player_board has been reset ' do
+        test_board.player_board.map! { |_item| _item = input_symbols[rand(0..2)] }
+        test_board.board_reset
+        test_board.player_board.map { |item| expect(item).to eql(' ') }
+      end
     end
   end
-
-  describe '#board_reset' do
-    let(:input_symbols){["X","O"," "]}
-    it 'Check if the board has been reset' do
-      test_board.memory.map{ |elem|  elem = rand(1..9) }
-      test_board.board_reset
-      test_board.memory.each_with_index.map {|item, index| expect(item).to eql( index + 1 )}
-    end
-    it 'Check if player_board has been reset ' do 
-      test_board.player_board.map{ |item| item = input_symbols[rand(0..2)]}
-      test_board.board_reset
-      test_board.player_board.map{|item| expect(item).to eql(" ")}   
-    end
-  end
-  
-
-end
 end

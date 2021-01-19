@@ -26,6 +26,7 @@ class TicTacToe
 
   def board_update
     return if @error_input
+
     board.memory[@location.to_i - 1] = ' '
     board.player_board[@location.to_i - 1] = @current_player[:symbol]
   end
