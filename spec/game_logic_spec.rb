@@ -75,10 +75,16 @@ describe TicTacToe do
       expect(test_board.player_board[tictactoe.location - 1]).not_to eql(' ')
     end
 
-    it 'returns nil if error input' do
+    it "Testing if board_update doesn't work" do
       tictactoe.error_input = true
-      expect(tictactoe.board_update).to eql(nil)
+      tictactoe.location = 2
+      tictactoe.current_player = test_player.player[0]
+      tictactoe.board_update
+      expect(test_board.memory[tictactoe.location - 1]).not_to eql(' ')
     end
+ 
+
+
   end
 
   describe '#win_check' do
