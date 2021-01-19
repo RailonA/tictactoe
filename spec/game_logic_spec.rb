@@ -137,13 +137,13 @@ describe BoardInfo do
     end
     it 'checks that there are no strange elements' do
       test_board.memory.map { |item| expect(item).not_to eql(' ') }
-      test_board.player_board.each_with_index.map { |item, index| expect(item).not_to eql(index + 1)) }
+      test_board.player_board.each_with_index.map { |item, index| expect(item).not_to eql(index + 1) }
     end
   end
 
   describe '#board_reset' do
     let(:input_symbols) { ['X', 'O', ' '] }
-    it 'Check if the board has been reset' do
+    it 'Check if the memory_board has been reset' do
       test_board.memory.map! { |_elem| _elem = rand(1..9) }
       test_board.board_reset
       test_board.memory.each_with_index.map { |item, index| expect(item).to eql(index + 1) }
@@ -152,6 +152,16 @@ describe BoardInfo do
       test_board.player_board.map! { |_item| _item = input_symbols[rand(0..2)] }
       test_board.board_reset
       test_board.player_board.map { |item| expect(item).to eql(' ') }
+    end
+    it 'checks that there are no empty elements for memory board' do
+      test_board.player_board.map! { |_item| _item = input_symbols[rand(0..2)] }
+      test_board.board_reset
+      test_board.memory.map { |item| expect(item).not_to eql(' ') }
+    end
+    it 'checks that there are no strange elements in player board' do
+      test_board.player_board.map! { |_item| _item = input_symbols[rand(0..2)] }
+      test_board.board_reset
+      test_board.player_board.each_with_index.map { |item, index| expect(item).not_to eql(index + 1) }
     end
   end
 end
