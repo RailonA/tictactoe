@@ -110,18 +110,16 @@ describe TicTacToe do
       end
     end
 
-
     it ' Check if mix symbols win' do
-     tictactoe.current_player =  tictactoe.player.player[0]
+      tictactoe.current_player = tictactoe.player.player[0]
       win_combos.map do |combo|
-      test_board.board_reset
-      test_board.player_board[combo[0]] = "X"
-      test_board.player_board[combo[1]] = "O"
-      test_board.player_board[combo[2]] = "X"
-      expect(tictactoe.win_check).not_to eql(true)
+        test_board.board_reset
+        test_board.player_board[combo[0]] = 'X'
+        test_board.player_board[combo[1]] = 'O'
+        test_board.player_board[combo[2]] = 'X'
+        expect(tictactoe.win_check).not_to eql(true)
+      end
     end
-  end
-    
   end
 end
 
@@ -169,18 +167,18 @@ end
 describe PlayerInfo do
   let(:initial_values1) { { name: '', symbol: 'X', score: 0 } }
   let(:initial_values2) { { name: '', symbol: 'O', score: 0 } }
-  let(:test_player) { Player.new }
+  let(:test_player) { PlayerInfo.new }
   describe '#initialize' do
     it 'checks that both players have their corresponding parameters' do
       expect(initial_values1).to eql(PlayerInfo.new.player[0])
       expect(initial_values2).to eql(PlayerInfo.new.player[1])
     end
     it 'checks that players are not the same' do
-      expect(test_player.player.player[0]).not_to eql(test_player.player.player[1])
+      expect(test_player.player[0]).not_to eql(test_player.player[1])
     end
     it 'checks that player scores are 0' do
-      expect(test_player.player.player[0][:score]).to eql(0)
-      expect(test_player.player.player[1][:score]).to eql(0)
+      expect(test_player.player[0][:score]).to eql(0)
+      expect(test_player.player[1][:score]).to eql(0)
     end
   end
 end
