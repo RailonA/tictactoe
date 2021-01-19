@@ -55,12 +55,21 @@ describe TicTacToe do
       tictactoe.board_update
       expect(test_board.memory[tictactoe.location - 1]).to eql(' ')
     end
+    it 'Check for invalid board update' do
+      tictactoe.location = 2
+      tictactoe.current_player = test_player.player[0]
+      tictactoe.board_update
+      expect(test_board.memory[tictactoe.location - 1]).not_to eql(3)
+    end
+
     it 'checks for updated player board' do
       tictactoe.location = 2
       tictactoe.current_player = test_player.player[0]
       tictactoe.board_update
       expect(test_board.player_board[tictactoe.location - 1]).to eql(tictactoe.current_player[:symbol])
     end
+ 
+
     it 'returns nil if error input' do
       tictactoe.error_input = true
       expect(tictactoe.board_update).to eql(nil)
