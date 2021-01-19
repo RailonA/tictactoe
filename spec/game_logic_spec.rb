@@ -12,6 +12,9 @@ describe TicTacToe do
       expect(test_player).to eql(tictactoe.player)
       expect(test_board).to eql(tictactoe.board)
     end
+    it "Check for player_info for invalid symbol" do
+      expect(test_player.player[0][:symbol]).not_to eql(test_player.player[1][:symbol])
+    end
   end
 
   describe '#switch_player' do
@@ -22,11 +25,12 @@ describe TicTacToe do
       tictactoe.switch_player
       expect(tictactoe.current_player).to eql(tictactoe.player.player.last)
     end
-
+  
     it 'returns nil if error input' do
       tictactoe.error_input = true
       expect(tictactoe.switch_player).to eql(nil)
     end
+
   end
 
   describe '#board_update' do
