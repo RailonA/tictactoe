@@ -6,10 +6,12 @@ describe TicTacToe do
   let(:test_player) { PlayerInfo.new }
   let(:test_board) { BoardInfo.new }
   let(:tictactoe) { TicTacToe.new(test_board, test_player) }
-
+ 
   describe '#initialize' do
-    it 'Check for valid creation cases' do
+    it 'Checks for a valid player' do
       expect(test_player).to eql(tictactoe.player)
+    end
+    it 'Checks for a valid board' do
       expect(test_board).to eql(tictactoe.board)
     end
     it 'Check for player_info for invalid symbol' do
@@ -25,7 +27,6 @@ describe TicTacToe do
       tictactoe.switch_player
       expect(tictactoe.current_player).to eql(tictactoe.player.player.last)
     end
-
     it 'Check for repeating turnes, or nill' do
       tictactoe.switch_player
       expect(tictactoe.current_player).not_to eql(nil)
@@ -105,10 +106,8 @@ describe TicTacToe do
       end
     end
 
-
-
-    it ' Check if mix symbols win' do
-      tictactoe.current_player =  tictactoe.player.player[0]
+    it 'Does not win if there are mixed symbols' do
+      tictactoe.current_player = tictactoe.player.player[0]
       win_combos.map do |combo|
         test_board.board_reset
         test_board.player_board[combo[0]] = 'X'
@@ -135,7 +134,6 @@ describe BoardInfo do
       test_board.player_board.each_with_index.map { |item, index| expect(item).not_to eql(index + 1) }
     end
   end
-
 
   describe '#board_reset' do
     let(:input_symbols) { ['X', 'O', ' '] }
