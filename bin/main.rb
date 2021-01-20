@@ -93,6 +93,7 @@ def tic_tac_toe
     end
     display_board
     switch_player
+
   end
 end
 
@@ -107,7 +108,6 @@ def restart_game
     false
 
   end
-  # add condition for error input
 end
 
 def game_round
