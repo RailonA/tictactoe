@@ -105,8 +105,10 @@ describe TicTacToe do
       end
     end
 
-    it 'Does not win if there are mixed symbols' do
-      tictactoe.current_player = tictactoe.player.player[0]
+
+
+    it ' Check if mix symbols win' do
+      tictactoe.current_player =  tictactoe.player.player[0]
       win_combos.map do |combo|
         test_board.board_reset
         test_board.player_board[combo[0]] = 'X'
@@ -133,6 +135,7 @@ describe BoardInfo do
       test_board.player_board.each_with_index.map { |item, index| expect(item).not_to eql(index + 1) }
     end
   end
+
 
   describe '#board_reset' do
     let(:input_symbols) { ['X', 'O', ' '] }
