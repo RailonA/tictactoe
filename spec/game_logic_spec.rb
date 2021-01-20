@@ -82,8 +82,8 @@ describe TicTacToe do
   describe '#win_check' do
     let(:win_combos) { [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]] }
 
-    it 'checks for every winning combination' do
-      tictactoe.switch_player
+    it 'checks for every winning combination for player 1' do
+      tictactoe.current_player = tictactoe.player.player[0]
 
       win_combos.map do |combo|
         test_board.board_reset
@@ -93,8 +93,11 @@ describe TicTacToe do
 
         expect(tictactoe.win_check).to eql(true)
       end
+    end
 
-      tictactoe.switch_player
+    it 'checks for every winning combination for player 2' do
+
+      tictactoe.current_player = tictactoe.player.player[1]
 
       win_combos.map do |combo|
         test_board.board_reset
