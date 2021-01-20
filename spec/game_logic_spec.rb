@@ -6,7 +6,7 @@ describe TicTacToe do
   let(:test_player) { PlayerInfo.new }
   let(:test_board) { BoardInfo.new }
   let(:tictactoe) { TicTacToe.new(test_board, test_player) }
- 
+
   describe '#initialize' do
     it 'Checks for a valid player' do
       expect(test_player).to eql(tictactoe.player)
@@ -96,7 +96,6 @@ describe TicTacToe do
     end
 
     it 'checks for every winning combination for player 2' do
-
       tictactoe.current_player = tictactoe.player.player[1]
 
       win_combos.map do |combo|
