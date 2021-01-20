@@ -20,21 +20,21 @@ describe TicTacToe do
   end
 
   describe '#switch_player' do
-    it 'checks if players have been switched' do
-      expect(tictactoe.current_player).to eql(nil)
+    it 'sets the first player as current player if the current player is nil' do
+      tictactoe.current_player = nil
       tictactoe.switch_player
       expect(tictactoe.current_player).to eql(tictactoe.player.player.first)
+    end
+    it 'sets the second player as current player if the current player is the first' do
+      tictactoe.current_player = tictactoe.player.player.first
       tictactoe.switch_player
       expect(tictactoe.current_player).to eql(tictactoe.player.player.last)
     end
-    it 'Check for repeating turnes, or nill' do
+    it 'sets the first player as current player if the current player is the second' do
+      tictactoe.current_player = tictactoe.player.player.last
       tictactoe.switch_player
-      expect(tictactoe.current_player).not_to eql(nil)
-      expect(tictactoe.current_player).not_to eql(tictactoe.player.player.last)
-      tictactoe.switch_player
-      expect(tictactoe.current_player).not_to eql(tictactoe.player.player.first)
+      expect(tictactoe.current_player).to eql(tictactoe.player.player.first)
     end
-
     it 'Does not make any changes if the input is invalid' do
       tictactoe.error_input = true
       tictactoe.current_player = tictactoe.player.player[0]
