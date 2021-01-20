@@ -55,6 +55,11 @@
 - Linkedin: [@alicia](https://www.linkedin.com/in/alicia-rojas-71468418a/)
 - Twiter: [@alicia](https://twitter.com/_alicia_paz)
 
+👤 **Rodrigo Ibaceta**
+
+- GitHub: [Rodrigo Ibaceta](https://github.com/RokoVarano/)
+- Twitter: [@Rodrigo](https://twitter.com/RodrigoIbacet11)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/rodrigo-ibaceta-a8657611a/)
 
 ## 🤝 Contributing
 
